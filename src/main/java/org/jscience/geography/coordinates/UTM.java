@@ -22,6 +22,7 @@ import javolution.xml.XMLFormat;
 import javolution.xml.stream.XMLStreamException;
 
 import org.jscience.geography.coordinates.crs.*;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.cs.CoordinateSystem;
 
 /**
@@ -283,6 +284,11 @@ public final class UTM extends Coordinates<ProjectedCRS<?>> {
     // OpenGIS Interface.
     public int getDimension() {
         return 2;
+    }
+
+    @Override
+    public double[] getCoordinate() {
+        return new double[0];
     }
 
     // OpenGIS Interface.
@@ -780,4 +786,8 @@ public final class UTM extends Coordinates<ProjectedCRS<?>> {
 
     private static final long serialVersionUID = 1L;
 
+    @Override
+    public DirectPosition getDirectPosition() {
+        return null;
+    }
 }

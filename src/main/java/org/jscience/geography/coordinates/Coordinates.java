@@ -16,7 +16,7 @@ import javolution.xml.XMLSerializable;
 
 import org.jscience.geography.coordinates.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.cs.CoordinateSystem;
-import org.opengis.spatialschema.geometry.DirectPosition;
+import org.opengis.geometry.DirectPosition;
 
 /**
  * This class designates the position that a point occupies in a given
@@ -55,6 +55,16 @@ public abstract class Coordinates<R extends CoordinateReferenceSystem<?>>
      * @return the dimensionality of this position.
      */
     public abstract int getDimension();
+
+    @Override
+    public double[] getCoordinate() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public DirectPosition getDirectPosition() {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * OpenGIS&reg; - Returns the ordinate at the specified dimension.

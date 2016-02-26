@@ -14,8 +14,10 @@ import java.util.Set;
 import org.jscience.geography.coordinates.CompoundCoordinates;
 import org.jscience.geography.coordinates.Coordinates;
 import org.opengis.metadata.Identifier;
+import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
+import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 
 /**
@@ -45,16 +47,16 @@ public class CompoundCRS<C1 extends Coordinates<?>, C2 extends Coordinates<?>>
                 _next.getCoordinateSystem().getAxis(dimension - firstDimension);
         }
 
-        public Identifier getName() {
+        public ReferenceIdentifier getName() {
             throw new UnsupportedOperationException();
         }
 
-        public Collection<String> getAlias() {
-            return EMPTY_SET;
+        public Collection<GenericName> getAlias() {
+            return EMPTY_GENERIC_SET;
         }
 
-        public Set<String> getIdentifiers() {
-            return EMPTY_SET;
+        public Set<ReferenceIdentifier> getIdentifiers() {
+            return EMPTY_REFERENCE_SET;
         }
 
         public InternationalString getRemarks() {

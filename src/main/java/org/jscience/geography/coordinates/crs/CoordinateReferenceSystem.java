@@ -23,8 +23,10 @@ import org.jscience.geography.coordinates.Coordinates;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.extent.Extent;
+import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 
@@ -143,6 +145,11 @@ public abstract class CoordinateReferenceSystem<C extends Coordinates<?>>
         return null;
     }
 
+    @Override
+    public Extent getDomainOfValidity() {
+        throw new UnsupportedOperationException();
+    }
+
     /**
      * OpenGIS&reg; - Description of domain of usage, or limitations of usage,
      * for which this (coordinate) reference system object is valid.
@@ -156,7 +163,7 @@ public abstract class CoordinateReferenceSystem<C extends Coordinates<?>>
      * 
      * @return an identifier holding the class name.
      */
-    public Identifier getName() {
+    public ReferenceIdentifier getName() {
         return new Name(CoordinateReferenceSystem.this.getClass().getName());
     }
 
@@ -165,8 +172,8 @@ public abstract class CoordinateReferenceSystem<C extends Coordinates<?>>
      *
      * @return The aliases, or an empty collection if there is none.
      */
-    public Collection<String> getAlias() {
-        return EMPTY_SET;
+    public Collection<GenericName> getAlias() {
+        return EMPTY_GENERIC_SET;
     }
 
     /**
@@ -175,8 +182,8 @@ public abstract class CoordinateReferenceSystem<C extends Coordinates<?>>
      *
      * @return This object identifiers, or an empty set if there is none.
      */
-    public Set<String> getIdentifiers() {
-        return EMPTY_SET;
+    public Set<ReferenceIdentifier> getIdentifiers() {
+        return EMPTY_REFERENCE_SET;
     }
 
     /**
@@ -222,7 +229,7 @@ public abstract class CoordinateReferenceSystem<C extends Coordinates<?>>
             _direction = direction;
         }
 
-        public final Identifier getName() {
+        public final ReferenceIdentifier getName() {
             return _name;
         }
 
@@ -238,12 +245,12 @@ public abstract class CoordinateReferenceSystem<C extends Coordinates<?>>
             return _direction;
         }
 
-        public Collection<String> getAlias() {
-            return EMPTY_SET;
+        public Collection<GenericName> getAlias() {
+            return EMPTY_GENERIC_SET;
         }
 
-        public Set<String> getIdentifiers() {
-            return EMPTY_SET;
+        public Set<ReferenceIdentifier> getIdentifiers() {
+            return EMPTY_REFERENCE_SET;
         }
 
         public InternationalString getRemarks() {
@@ -257,7 +264,7 @@ public abstract class CoordinateReferenceSystem<C extends Coordinates<?>>
     }
 
     // Default coordinates axis.
-    static class Name implements Identifier {
+    static class Name implements ReferenceIdentifier {
         final String _value;
 
         public Name(String value) {
@@ -266,6 +273,10 @@ public abstract class CoordinateReferenceSystem<C extends Coordinates<?>>
 
         public String getCode() {
             return _value;
+        }
+
+        public String getCodeSpace() {
+            throw new UnsupportedOperationException();
         }
 
         public Citation getAuthority() {
@@ -277,5 +288,6 @@ public abstract class CoordinateReferenceSystem<C extends Coordinates<?>>
         }
     }
 
-    static final FastSet<String> EMPTY_SET = new FastSet<String>();
+    static final FastSet<GenericName> EMPTY_GENERIC_SET = new FastSet<GenericName>();
+    static final FastSet<ReferenceIdentifier> EMPTY_REFERENCE_SET = new FastSet<ReferenceIdentifier>();
 }
