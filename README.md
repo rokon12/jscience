@@ -6,7 +6,8 @@ of the geoapi and javolution.  This version of geoapi conflicts with newer versi
 by geotools.  To make it harder to use, the version of JScience on maven central was built with the dependencies
 included.
 
-In this update, we updated jscience, using the source from jscience.org and the pom file from maven central as
-a starting point.  The version of Javolution was updated and the gt-opengeo was used in place of geoapi.
+In this update used the source from jscience.org and the pom file from maven central as
+a starting point.  In it, the version of Javolution was updated and the gt-opengeo was used in place of geoapi.
+The pom was updated to use the newer versions of maven plugin and build a jar which does not contain dependencies.
 
 Ryan
